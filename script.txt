@@ -1,0 +1,37 @@
+data = [...document.querySelectorAll(".ligne-resultat")].map((row) => {
+    //t = row.querySelectorAll('.info-resultat').parentElement.href
+    indv = row.querySelector('.content-individu')
+    c_indv = [...indv.children].map((child) => {
+        if (child.classList.contains('icon-search-homme')){
+            r = `H : ${child.innerText}`
+        }
+        else if (child.classList.contains('icon-search-femme')){
+            r = `F : ${child.innerText}`
+        } else {
+            r = child.innerText
+        }
+        return r
+    })
+    period = row.querySelector('.content-periode')
+    c_period = [...period.children].map((child) => {
+        return child.innerText
+    })
+    lieu = row.querySelector('.content-lieu')
+    c_loc = [...lieu.querySelectorAll('.ligne-lieu')].map((row1) => {
+        text_l = row1.querySelector('.title-lieu').innerText
+        type_l = [...row1.querySelectorAll('.svg-icon-s-12')].map((icon) => {
+            t_p = `${icon.title} : ${text_l}`
+            return t_p
+        })           
+        return type_l
+    })
+    summary = {
+        indv : c_indv,
+        //link : t,
+        period : c_period,
+        lieu : c_loc
+    }
+    return summary
+})
+
+console.log(JSON.stringify(data))
